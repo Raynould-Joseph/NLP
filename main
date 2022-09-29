@@ -1,0 +1,177 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyNDTa9VhTQ7iex4/mixflpC",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Raynould-Joseph/NLP/blob/main/main\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "hU26_tlhiPeU",
+        "outputId": "71b96e7a-655f-40c1-8bb3-beba92b4c978"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stderr",
+          "text": [
+            "[nltk_data] Downloading package gutenberg to /root/nltk_data...\n",
+            "[nltk_data]   Unzipping corpora/gutenberg.zip.\n"
+          ]
+        },
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "['austen-emma.txt',\n",
+              " 'austen-persuasion.txt',\n",
+              " 'austen-sense.txt',\n",
+              " 'bible-kjv.txt',\n",
+              " 'blake-poems.txt',\n",
+              " 'bryant-stories.txt',\n",
+              " 'burgess-busterbrown.txt',\n",
+              " 'carroll-alice.txt',\n",
+              " 'chesterton-ball.txt',\n",
+              " 'chesterton-brown.txt',\n",
+              " 'chesterton-thursday.txt',\n",
+              " 'edgeworth-parents.txt',\n",
+              " 'melville-moby_dick.txt',\n",
+              " 'milton-paradise.txt',\n",
+              " 'shakespeare-caesar.txt',\n",
+              " 'shakespeare-hamlet.txt',\n",
+              " 'shakespeare-macbeth.txt',\n",
+              " 'whitman-leaves.txt']"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 1
+        }
+      ],
+      "source": [
+        "import nltk\n",
+        "nltk.download('gutenberg')\n",
+        "nltk.corpus.gutenberg.fileids()"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import nltk\n",
+        "\n",
+        "from nltk.corpus import gutenberg\n",
+        "\n",
+        "for fileid in gutenberg.fileids():\n",
+        "    total_unique_words = len(set(gutenberg.words(fileid)))\n",
+        "    total_words = len(gutenberg.words(fileid))\n",
+        "    print(total_words/total_unique_words,fileid)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "z3tHU-tLiR9T",
+        "outputId": "9f97950d-c142-40ce-ac03-52628cba3347"
+      },
+      "execution_count": 2,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "24.63538599411087 austen-emma.txt\n",
+            "16.00962165688193 austen-persuasion.txt\n",
+            "20.719449729255086 austen-sense.txt\n",
+            "73.40068269300603 bible-kjv.txt\n",
+            "4.59010989010989 blake-poems.txt\n",
+            "12.57081447963801 bryant-stories.txt\n",
+            "10.75 burgess-busterbrown.txt\n",
+            "11.309681697612731 carroll-alice.txt\n",
+            "10.841175813121717 chesterton-ball.txt\n",
+            "10.37028557657549 chesterton-brown.txt\n",
+            "10.167915381225209 chesterton-thursday.txt\n",
+            "21.960075054727405 edgeworth-parents.txt\n",
+            "13.502044830977896 melville-moby_dick.txt\n",
+            "9.00613896381732 milton-paradise.txt\n",
+            "7.256460674157303 shakespeare-caesar.txt\n",
+            "6.858821369561227 shakespeare-hamlet.txt\n",
+            "5.760517799352751 shakespeare-macbeth.txt\n",
+            "10.809058552585665 whitman-leaves.txt\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "\n",
+        "import nltk\n",
+        "nltk.download('punkt')\n",
+        "emma = nltk.corpus.gutenberg.words('shakespeare-macbeth.txt')\n",
+        "print(len(emma))\n",
+        "macbeth_sentences = gutenberg.sents('shakespeare-macbeth.txt')\n",
+        "macbeth_sentences"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "b_lB7dW-iU2U",
+        "outputId": "c489dd65-f1b4-49b9-8ceb-5b4f975eb5b9"
+      },
+      "execution_count": 4,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stderr",
+          "text": [
+            "[nltk_data] Downloading package punkt to /root/nltk_data...\n",
+            "[nltk_data]   Unzipping tokenizers/punkt.zip.\n"
+          ]
+        },
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "23140\n"
+          ]
+        },
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "[['[', 'The', 'Tragedie', 'of', 'Macbeth', 'by', 'William', 'Shakespeare', '1603', ']'], ['Actus', 'Primus', '.'], ...]"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 4
+        }
+      ]
+    }
+  ]
+}
